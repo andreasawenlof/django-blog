@@ -20,6 +20,9 @@
                             </div>
                             <a href="#" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text">
+                                    {{ post.excerpt }}
+                                </p>
                             </a>
 
                             <hr />
@@ -49,7 +52,7 @@
 </div>
 
 <!-- index.html content ends here -->
-    {% block copyright %}
-        Copyright 2024 Andréas Awenlöf
-    {% endblock %}
+ {% block copyright %}
+    Copyright 2024 Andréas Awenlöf
+ {% endblock copyright %}
 {% endblock %}
