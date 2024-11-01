@@ -15,5 +15,10 @@
 	"gitlens.hovers.enabled": false,
 	"editor.hover.delay": 1000,
 	"editor.hover.hidingDelay": 0,
-	"terminal.integrated.fontSize": 17
+	"terminal.integrated.fontSize": 14,
+	"editor.fontFamily": "Fira Code",
+	"editor.fontSize": 14,
+	"editor.fontLigatures": true,
+	"terminal.integrated.fontFamily": "Fira Code",
+	"editor.hover.above": false
 }
