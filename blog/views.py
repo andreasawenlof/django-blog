@@ -76,6 +76,7 @@ def comment_edit(request, slug, comment_id):
             comment = comment_form.save(commit=False)
             comment.author = request.user
             comment.post = post
+            comment.approved = False
             comment.save()
             messages.add_message(
                 request,
