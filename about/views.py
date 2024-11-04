@@ -1,11 +1,29 @@
-from django.shortcuts import render, get_object_or_404
-from .models import About, CollaborateRequest
-from .forms import CollaborateForm
+from django.shortcuts import render
 from django.contrib import messages
+from .models import About
+from .forms import CollaborateForm
 
 
 # Create your views here.
 def about_me(request):
+    """
+        Display information about the author and provide a collaboration form.
+
+        This view retrieves the latest :model:`about.About` object and renders it along with a
+        :form:`about.CollaborateForm` for users to submit collaboration requests.
+
+        **Context**
+
+        ``about``
+            An instance of :model:`about.About`.
+
+        ``collaborate_form``
+            An instance of :form:`about.CollaborateForm`.
+
+        **Template:**
+
+        :template:`about/about.html`
+    """
 
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)

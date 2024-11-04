@@ -8,6 +8,9 @@ from .forms import CommentForm
 
 # Create your views here.
 class PostList(generic.ListView):
+    """
+        Displays a list of published blog posts.
+    """
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
     paginate_by = 6
@@ -15,16 +18,24 @@ class PostList(generic.ListView):
 
 def post_detail(request, slug):
     """
-    Display an individual :model:`blog.Post`.
+        Displays a single blog post along with its associated comments.
+        - If the post is not published, redirects to the homepage.
+        - If the post is published, renders the post detail page.
+        - Allows users to submit comments.
 
-    **Context**
+        **Context**
 
-    ``post``
-        An instance of :model:`blog.Post`.
+        ``post``
+            An instance of :model:`blog.Post`.
 
-    **Template:**
+        ``comments``
+            A queryset of :model:`blog.Comment` associated with the post.
 
-    :template:`blog/post_detail.html`
+        ``comment_count``
+            The number of approved comments associated with the post.
+
+        ``comment_form``
+            An instance of :form:`blog.CommentForm`.
     """
 
     queryset = Post.objects.filter(status=1)
@@ -42,7 +53,9 @@ def post_detail(request, slug):
             comment.save()
 
             messages.add_message(
-                request, messages.SUCCESS, "Content submitted and awaiting approval"
+                request,
+                messages.SUCCESS,
+                "Content submitted and awaiting approval",
             )
 
     comment_form = CommentForm()
@@ -61,7 +74,21 @@ def post_detail(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+        View to edit comment.
+        - Redirects to post detail page if the comment belongs to the authenticated user.
+        - Adds a success message if the comment is updated.
+        - Adds an error message if the user does not have permission to edit the comment.
+
+        **Context**
+
+        ``post``
+            An instance of :model:`blog.Post`.
+
+        ``comment``
+            An instance of :model:`blog.Comment`.
+
+        ``comment_form``
+            An instance of :form:`blog.CommentForm`.
     """
 
     if request.method == "POST":
@@ -84,13 +111,26 @@ def comment_edit(request, slug, comment_id):
                 "Comment Updated!",
             )
         else:
-            messages.add_message(request, messages.ERROR, "Error Updating comment!")
+            messages.add_message(
+                request, messages.ERROR, "Error Updating comment!"
+            )
     return HttpResponseRedirect(reverse("post_detail", args=[slug]))
 
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+        View to delete comment.
+        - Redirects to post detail page if comment belongs to the authenticated user.
+        - Adds a success message if the comment is deleted.
+        - Adds an error message if the user does not have permission to delete the comment.
+
+        **Context**
+
+        ``post``
+            An instance of :model:`blog.Post`.
+
+        ``comment``
+        An instance of :model:`blog.Comment`.
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)

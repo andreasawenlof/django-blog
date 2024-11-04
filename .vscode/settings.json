@@ -1,24 +1,49 @@
 {
-	"files.exclude": {
-		"**/.DS_Store": true,
-		"**/.git": true,
-		"**/.github": true,
-		"**/.gitp*": true,
-		"**/.hg": true,
-		"**/.svn": true,
-		"**/.vscode": true,
-		"**/core.Microsoft*": true,
-		"**/core.mongo*": true,
-		"**/core.python*": true,
-		"**/CVS": true
-	},
-	"gitlens.hovers.enabled": false,
-	"editor.hover.delay": 1000,
-	"editor.hover.hidingDelay": 0,
-	"terminal.integrated.fontSize": 16,
-	"editor.fontFamily": "Fira Code",
-	"editor.fontSize": 15,
-	"editor.fontLigatures": true,
-	"terminal.integrated.fontFamily": "Fira Code",
-	"editor.hover.above": false
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.github": true,
+        "**/.gitp*": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/.vscode": true,
+        "**/core.Microsoft*": true,
+        "**/core.mongo*": true,
+        "**/core.python*": true,
+        "**/CVS": true
+    },
+    "gitlens.hovers.enabled": false,
+    "editor.hover.delay": 1000,
+    "editor.hover.hidingDelay": 0,
+    "terminal.integrated.fontSize": 16,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 15,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "Fira Code",
+    "editor.hover.above": false,
+    // Python-specific formatter for Black
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+
+    // Enable linting and specify Flake8 as the linter
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+
+    // Set default Flake8 arguments
+    "python.linting.flake8Args": ["--max-line-length=79"],
+
+    // Configure Black as the formatter for Python
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "79"],
+
+    // Editor settings
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.rulers": [79],
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "ai-docstring.startOnNewLine": true
 }
