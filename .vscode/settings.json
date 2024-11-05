@@ -26,6 +26,16 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
 
+    "files.associations": {
+    "**/templates/*.html": "django-html"
+    },
+
+    "[django-html]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "junstyle.vscode-django-support"
+    },
+
+
     // Enable linting and specify Flake8 as the linter
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
@@ -45,5 +55,11 @@
     "editor.tabSize": 4,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
-    "ai-docstring.startOnNewLine": true
+    "ai-docstring.startOnNewLine": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.bracketSameLine": true,
+    "reactSnippets.settings.prettierEnabled": true,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "editor.defaultFormatter": "ms-python.black-formatter"
 }
